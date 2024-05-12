@@ -186,28 +186,7 @@ router.post("/blogs", jwtAuthMiddleware, upload.single('photo'), async (req, res
     }
 });
 
-//perfect code
 // // GET route to fetch and show all stored blogs
-// router.get("/blogs", async (req, res) => {
-//     try {
-//         // Fetch all blogs from the database
-//         const blogsData = await blogModel.find();
-//         const userId = await blogsData.user
-//         const user = await registerModel.findById(userId)
-//         // Check if there are any blogs
-//         if (blogsData.length === 0) {
-//             return res.status(404).render('error', { message: "No blogs found" });
-//         }
-
-//         // Render the blogs using an EJS template
-//         // res.render('showBlogs', { blogs:blogsData });
-//         res.status(200).json({ blogsData, user:user })
-//     } catch (error) {
-//         // If there's an error, render an error page
-//         res.status(500).render('error', { error: error.message });
-//     }
-// });
-//try an err
 router.get("/blogs", async (req, res) => {
     try {
         // Fetch all blogs from the database
@@ -414,27 +393,6 @@ router.put("/blog/edit/:id", jwtAuthMiddleware, async (req, res)=>{
 });
 
 // Route for adding a comment to a blog post
-// router.post("/blogs/:blogId/comments", jwtAuthMiddleware, async (req, res) => {
-//     try {
-//         // Access user ID from the request object
-//         const userId = req.user.id;
-//         const { blogId } = req.params;
-//         const { comment } = req.body;
-//         // Find the blog post by its ID
-//         const blog = await blogModel.findById(blogId);
-//         if (!blog) {
-//             return res.status(404).json({ error: "Blog not found" });
-//         }
-//         // Add the comment to the blog post
-//         blog.comments.push(comment, userId);
-//         // Save the updated blog post
-//         await blog.save();
-//         res.json(blog);
-//     } catch (error) {
-//         console.error("Error adding comment:", error);
-//         res.status(500).json({ error: "Internal server error" });
-//     }
-// });
 router.post("/blogs/:blogId/comments", jwtAuthMiddleware, async (req, res) => {
     try {
         // Access user ID from the request object
